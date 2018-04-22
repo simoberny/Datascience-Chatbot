@@ -4,7 +4,7 @@ Chat UI with React
 
 ## UI Concept
 
-![Application concept](https://i.imgur.com/f69lxqH.png)
+![Application concept](https://i.imgur.com/3I1aCx0.png)
 
 ### Prerequisites
 
