@@ -7,6 +7,10 @@ Conversational application for Data Science with context support.
 * Python server with Flask framework
 * React Front-end with Redux store 
 
+## UI Concept
+
+![Application concept](https://i.imgur.com/f69lxqH.png)
+
 ## Instructions
 
 To start the app, start the server with

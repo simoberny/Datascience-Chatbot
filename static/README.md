@@ -2,6 +2,10 @@
 
 Chat UI with React
 
+## UI Concept
+
+![Application concept](https://i.imgur.com/f69lxqH.png)
+
 ### Prerequisites
 
 To install all the dependencies
