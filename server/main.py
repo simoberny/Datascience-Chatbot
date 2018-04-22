@@ -18,10 +18,16 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or 'e5ac358c-f0bf-11e5-9e39-d
 
 Session(app)
 
+ALLOWED_EXTENSIONS = set(['csv', 'xls', 'data'])
+
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'RNode-Unitn-9444d4019101.json'
 language_code = 'it-IT'
 
 datasets = {}
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def speak_json(message):
     session_client = dialogflow.SessionsClient()
@@ -104,8 +110,7 @@ def upload_file():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file:
-            session['filename'] = secure_filename(file.filename)
+        if file and allowed_file(file.filename):
             stream = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
             csv_input = pd.read_csv(stream, sep=None, engine='python')
             temp_name = file.filename.split(".")[0]

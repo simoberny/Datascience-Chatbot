@@ -48,10 +48,14 @@ class ConnectedUpload extends React.Component {
         }).then(response => {
             const name = response.data.name;
 
-            this.props.addVariabile({ "name": name, "id": uuidv1() });
-            this.props.addMessaggio({"id": uuidv1(), "who": "comp", "messaggio": "Dataset caricato " + response.data.name});
-
-            this.setState({ showSend: 0, filename: "Seleziona..." });
+            if(name){
+                this.props.addVariabile({ "name": name, "id": uuidv1() });
+                this.props.addMessaggio({"id": uuidv1(), "who": "comp", "messaggio": "Dataset caricato " + response.data.name});
+    
+                this.setState({ showSend: 0, filename: "Seleziona..." });
+            }else{
+                this.setState({ showSend: 0, filename: "File non caricato!" });
+            }
         })
     }
 
