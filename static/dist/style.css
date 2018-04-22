@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
+
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    margin: 0;
+    height: 100% !important;
+    font-family: 'Montserrat', helvetica, arial, sans-serif;
+}
+
+.container-fluid{
+    height: 100% !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+#content{
+    height: 100%;
+}
+
+.row{
+    height: 100% !important;
+    margin: 0 !important;
+}
+
+.chat{
+    overflow: hidden;
+}
+
+.gestione{
+    background: #ddd;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.scroll_container{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.chat-thread{
+    padding: 10px;
+    margin: 10px;
+    list-style: none;
+    overflow-x: hidden;
+    padding-bottom: 70px;
+}
+
+.chat-thread li{
+    position: relative;
+    clear: both;
+    display: inline-block;
+    padding: 10px 15px 10px 15px;
+    font-size: 18px;
+    max-width: 78%;
+    margin-bottom: 10px;
+}
+
+.me{
+    float: right;
+    background: #1a75ff;
+    color: white;
+    border-radius: 20px 20px 20px 0;
+}
+
+.comp{
+    float: left;
+    color: #444;
+    background: #ddd;
+    border-radius: 20px 20px 0px 20px;
+}
+
+
+.control{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.form-upload{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+#dialog{
+    font-size: 18px;
+    width: 100%;
+    height: 50px;
+    border-radius: 30px;
+    padding: 0 15px;
+    border: 0;
+    box-shadow: 0 3px 20px -1px rgba(0,0,0,0.2);
+    margin-right: 10px; 
+}
+
+.upload-file{
+    display: flex;
+    flex-direction: row;
+    min-width: 50px;
+    max-width: 200px;
+    flex-wrap: nowrap;
+    height: 50px;
+    background: #333;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    padding: 0 10px;
+    margin-right: 20px;
+    margin-bottom: 0 !important;
+    box-shadow: 0 15px 20px -7px rgba(0,0,0,0.3);
+}
+
+.upload-file:hover{
+    background: #555;
+    transition: background 0.3s;
+}
+
+.upload-file .material-icons{
+    line-height: 50px;
+}
+
+.send-file{
+    width: 40px;
+    height: 40px;
+    background: #1a75ff;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    transform: scale(0);
+    transition: transform 0.3s;
+    display: none;
+    text-align: center;
+}
+
+.send-file:hover{
+    background: #444;
+    transition: background 0.3s;
+}
+
+.send-file .material-icons{
+    line-height: 40px;
+}
+
+.file-name{
+    padding: 0px 5px;
+    line-height: 50px;
+    color: white;
+    white-space:nowrap;
+}
+
+.hidden_input{
+    z-index: -1;
+    display: none;
+}
+
+.show_send{
+    display: block;
+    transform: scale(1);
+    transition: transform 0.6s ease-in;
+}
+
+.progress_count{
+    color: black;
+}
+
+
+/**************************** GESTIONE *****************************/
+
+h5{
+    color: #666 !important;
+    font-weight: 400 !important;
+}
+
+.variable-list{
+    background: rgba(0,0,0,0.04);
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.variable-container{
+    position: relative;
+    padding: 7px 13px;
+    background: rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px -3px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    display: inline-block;
+    margin-right: 20px;
+    width: auto;
+    cursor: pointer;
+}
+
+.variable-detail{
+    margin-top: 20px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.selected-var{
+    background: rgba(0,0,0,0.3);
+}
+
+.panel{
+
+}
+
+.button-board{
+    width: 100%;
+    z-index: 100;
+    border: none;
+    background: rgba(0,0,0,0.05);
+    color: #555;
+    font-weight: 500;
+    height: 60px;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.button-board:hover{
+    background: rgba(0,0,0,0.2);
+    transition: background 0.4s;
+}

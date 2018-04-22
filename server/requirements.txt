@@ -1,0 +1,7 @@
+Flask
+Flask-Session
+Werkzeug
+matplotlib
+pandas
+sklearn
+dialogflow
