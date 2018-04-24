@@ -1,4 +1,0 @@
-{
-    "python.pythonPath": "${workspaceFolder}\\server\\Scripts\\python.exe",
-    "git.ignoreLimitWarning": true
-}
