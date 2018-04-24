@@ -5,7 +5,7 @@ import { addMessaggio } from "../Actions/index";
 import uuidv1 from "uuid";
 import Upload from "./Upload"
 
-const mapDispatchToPropsMessaggio = dispatch => {
+const mapAddMessaggioEvent = dispatch => {
     return {
       addMessaggio: messaggio => dispatch(addMessaggio(messaggio))
     };
@@ -59,5 +59,5 @@ class ConnectedForm extends React.Component {
     }
 }
 
-const Form = connect(null, mapDispatchToPropsMessaggio)(ConnectedForm);
+const Form = connect(null, mapAddMessaggioEvent)(ConnectedForm);
 export default Form;

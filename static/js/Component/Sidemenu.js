@@ -6,7 +6,7 @@ import { clearMessaggi } from "../Actions/index";
 
 const JsonTable = require('ts-react-json-table');
 
-const mapDispatchToProps = dispatch => {
+const mapClearMessaggiEvent = dispatch => {
     return {
       clearMessaggi: () => dispatch(clearMessaggi())
     };
@@ -75,5 +75,5 @@ class ConnectedSidemenu extends React.Component {
     }
 }
 
-const Sidemenu = connect(null, mapDispatchToProps)(ConnectedSidemenu);
+const Sidemenu = connect(null, mapClearMessaggiEvent)(ConnectedSidemenu);
 export default Sidemenu;

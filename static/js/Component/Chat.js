@@ -5,7 +5,7 @@ import uuidv1 from "uuid";
 import { connect } from "react-redux";
 import { addMessaggio } from "../Actions/index";
 
-const mapStateToProps = state => {
+const mapMessaggi = state => {
     return { messaggi: state.messaggi };
 };
 
@@ -15,7 +15,6 @@ class ConnectedMessages extends React.Component {
     }
       
     componentDidMount() { this.scrollToBottom(); }
-      
     componentDidUpdate() { this.scrollToBottom(); }
 
     render(){
@@ -36,7 +35,7 @@ class ConnectedMessages extends React.Component {
     }
 }
 
-const Messages = connect(mapStateToProps)(ConnectedMessages);
+const Messages = connect(mapMessaggi)(ConnectedMessages);
 
 export default class Chat extends React.Component {
     render(){

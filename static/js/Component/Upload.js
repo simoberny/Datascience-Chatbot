@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { addVariabile, addMessaggio } from "../Actions/index";
 import uuidv1 from "uuid";
 
-const mapDispatchToProps = dispatch => {
+const mapAddVariabileEvent = dispatch => {
     return {
       addVariabile: variabile => dispatch(addVariabile(variabile))
     };
@@ -73,5 +73,5 @@ class ConnectedUpload extends React.Component {
     }
 }
 
-const Upload = connect(null, mapDispatchToProps)(ConnectedUpload);
+const Upload = connect(null, mapAddVariabileEvent)(ConnectedUpload);
 export default Upload;

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import axios from 'axios';
 
-const mapStateToProps = state => {
+const mapVariabili = state => {
     return { variabili: state.variabili };
 };
 
@@ -18,5 +18,5 @@ class ConnectedList extends React.Component {
     }
 }
 
-const List = connect(mapStateToProps)(ConnectedList);
+const List = connect(mapVariabili)(ConnectedList);
 export default List;
