@@ -11,7 +11,7 @@ class ConnectedList extends React.Component {
         return (
             <div className="variable-list">
                 {this.props.variabili.map(el => (
-                    <div key={el.id} className={(this.props.selected == el.name) ? 'variable-container selected-var' : 'variable-container'} id={el.name} onClick={() => this.props.onClick(el)}>{el.name}</div>
+                    <div key={el.id} className={(this.props.selected == el.id) ? 'variable-container selected-var' : 'variable-container'} id={el.name} onClick={() => this.props.onClick(el)}>{el.name}</div>
                 ))}
             </div>
         );

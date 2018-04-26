@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import axios from 'axios';
 import List from './Variablelist';
 import { clearMessaggi } from "../Actions/index";
+var fileDownload = require('js-file-download');
 
 const JsonTable = require('ts-react-json-table');
 
@@ -16,11 +17,14 @@ class ConnectedSidemenu extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            idVar: '',
             selectedVar: '',
             contentVar: [],
+            savedJup: 'Save Jupyter Notebook'
         }
         this.handleClick = this.handleClick.bind(this);
         this.clearSession = this.clearSession.bind(this);
+        this.saveJupyter = this.saveJupyter.bind(this);
     }
 
     handleClick (el) {
@@ -28,6 +32,7 @@ class ConnectedSidemenu extends React.Component {
         .then(response => {
             console.log(response.data);
             this.setState({
+                idVar: el.id,
                 selectedVar: el.name,
                 contentVar: response.data
             });
@@ -39,6 +44,11 @@ class ConnectedSidemenu extends React.Component {
         .then(response => {
             this.props.clearMessaggi();
         })
+    }
+
+    saveJupyter(e){
+        this.setState({ savedJup: 'Saved' });
+        fileDownload("{cells: []}", 'acaso.ipynb');
     }
 
     render () {
@@ -63,11 +73,11 @@ class ConnectedSidemenu extends React.Component {
             <div className="gestione col-12 col-md-6 col-lg-4">
                 <div className="variable-context">
                     <h5>Variables</h5>
-                    <List onClick={this.handleClick} selected={this.state.selectedVar}/>
+                    <List onClick={this.handleClick} selected={this.state.idVar}/>
                 </div>
                 {dettaglioVariabile}
                 <div className="panel">
-                    <button className="button-board">Save Jupyter Notebook</button>
+                    <button className="button-board" onClick={this.saveJupyter}>{this.state.savedJup}</button>
                     <button className="button-board" onClick={this.clearSession}>Clear</button>
                 </div>
             </div>

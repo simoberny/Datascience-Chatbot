@@ -93,6 +93,15 @@ def clearsession():
 
     return jsonify(result="ok")
 
+@app.route('/api/savejup', methods=['GET'])
+def savejup():
+    message = request.args.get('value')
+
+    with open("test.txt","wb") as fo:
+        fo.write("This is Test Data")
+
+    return jsonify(result="ok")
+
 @app.before_first_request
 def _run_on_start():
     session.permanent = True
