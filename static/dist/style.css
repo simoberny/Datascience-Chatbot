@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
 
 *{
     box-sizing: border-box;
@@ -14,6 +16,7 @@ html, body{
     height: 100% !important;
     padding: 0 !important;
     overflow: hidden;
+    background: #f1f1f1;
 }
 
 #content{
@@ -27,6 +30,7 @@ html, body{
 
 .chat{
     overflow: hidden;
+    padding: 0 !important;
 }
 
 .gestione{
@@ -41,27 +45,120 @@ html, body{
     width: 100%;
     height: 100%;
     overflow-y: auto;
+    background:white;
 }
 
 .chat-thread{
-    padding: 10px;
-    margin: 10px;
+    padding-left: 100px;
+    padding-right: 10px;
+    padding-top: 20px;
+    box-sizing: border-box;
     list-style: none;
     overflow-x: hidden;
-    padding-bottom: 70px;
+    padding-bottom: 90px;
+}
+
+.chat-thread:before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100%;
+    background: #f7f7f7;
 }
 
 .chat-thread li{
     position: relative;
     clear: both;
-    display: inline-block;
+    display: block;
     padding: 10px 15px 10px 15px;
     font-size: 18px;
-    max-width: 78%;
-    margin-bottom: 10px;
+    max-width: 100%;
+}
+
+.chat-thread li img{
+    position: relative;
+    max-width: 40%;
+}
+
+.output-area{
+    margin-top: 20px;
+}
+
+.output-area p{
+    display: inline-block;
+}
+
+.line{
+    display: block;
+}
+
+.markdown{
+
+}
+
+.code{
+    padding: 5px 20px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    background: #f8f8f8;
+    font-family: 'Source Code Pro', monospace !important;
+}
+
+.code:hover{
+    background: rgba(0,0,0,0.05);
+}
+
+.incode{
+    font-weight: 400;
+    padding-right: 40px;
+    padding-left: 10px;
+    font-size: 19px;
+    margin-left: -100px;
+    color: #0346aa;
+}
+
+.incode-markdown{
+    font-weight: 400;
+    font-family: 'Source Code Pro', monospace !important;
+    padding-right: 80px;
+    font-size: 15px;
+    margin-left: -80px;
+    color: #666;
+}
+
+.outcode{
+    font-weight: 400;
+    padding-right: 40px;
+    padding-left: 10px;
+    font-size: 19px;
+    margin-left: -110px;
+    color: #a30202;
+}
+
+
+.markdown span{
+    padding: 8px 15px;
+    position: relative;
 }
 
 .me{
+    background: #1a75ff;
+    color: white;
+    border-radius: 20px 20px 20px 0;
+    float: right;
+}
+
+.comp{
+    color: #444;
+    background: #ddd;
+    border-radius: 20px 20px 0px 20px;
+}
+
+
+/*.me{
     float: right;
     background: #1a75ff;
     color: white;
@@ -73,7 +170,9 @@ html, body{
     color: #444;
     background: #ddd;
     border-radius: 20px 20px 0px 20px;
-}
+}*/
+
+
 
 
 .control{
@@ -82,9 +181,11 @@ html, body{
     width: 100%;
     display: flex;
     flex-direction: row;
-    padding: 25px;
+    padding: 10px 25px;
     align-items: center;
     flex-wrap: nowrap;
+    background: white;
+    box-shadow: 0px -4px 15px -4px rgba(0,0,0,0.08);
 }
 
 .form-upload{
@@ -102,9 +203,14 @@ html, body{
     height: 50px;
     border-radius: 30px;
     padding: 0 15px;
+    margin-right: 10px;
     border: 0;
-    box-shadow: 0 3px 20px -1px rgba(0,0,0,0.2);
-    margin-right: 10px; 
+    background: #eee;
+}
+
+#dialog:focus {
+    outline: none !important;
+    background: #ddd;
 }
 
 .upload-file{
@@ -114,14 +220,13 @@ html, body{
     max-width: 200px;
     flex-wrap: nowrap;
     height: 50px;
-    background: #333;
+    background: #555;
     border-radius: 50px;
     color: white;
     cursor: pointer;
     padding: 0 10px;
-    margin-right: 20px;
+    margin-right: 10px;
     margin-bottom: 0 !important;
-    box-shadow: 0 15px 20px -7px rgba(0,0,0,0.3);
 }
 
 .upload-file:hover{
@@ -180,6 +285,35 @@ html, body{
 }
 
 
+/**************************** TOP BAR ******************************/
+
+.button-board{
+    width: auto;
+    height: 50px;
+    z-index: 100;
+    border: none;
+    background: #eee;
+    color: #555;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: background 0.3s;
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 0 10px;
+}
+
+.button-board:hover{
+    background: rgba(0,0,0,0.2);
+    transition: background 0.4s;
+}
+
+.round{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+
 /**************************** GESTIONE *****************************/
 
 h5{
@@ -222,7 +356,7 @@ h5{
 
 }
 
-.button-board{
+.button-board-lateral{
     width: 100%;
     z-index: 100;
     border: none;
@@ -236,7 +370,7 @@ h5{
     cursor: pointer;
 }
 
-.button-board:hover{
+.button-board-lateral:hover{
     background: rgba(0,0,0,0.2);
     transition: background 0.4s;
 }

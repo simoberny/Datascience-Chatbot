@@ -38,7 +38,7 @@ class ConnectedUpload extends React.Component {
         var formdata = new FormData();
         formdata.append('file', file);
 
-        axios.post('http://localhost:5000/upload', formdata, {
+        axios.post('http://localhost:8080/api/upload', formdata, {
             onUploadProgress: (progressEvent) => {
                 const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
                 if (totalLength !== null) {
@@ -46,11 +46,11 @@ class ConnectedUpload extends React.Component {
                 }
             }
         }).then(response => {
-            const name = response.data.name;
+            const name = response.data;
 
             if(name){
                 this.props.addVariabile({ "name": name, "id": uuidv1() });
-                this.props.addMessaggio({"id": uuidv1(), "who": "comp", "messaggio": "Dataset caricato " + response.data.name});
+                this.props.addMessaggio({"id": uuidv1(), "who": "comp", "what": "markdown", "messaggio": "Dataset caricato " + response.data, "output": {"type": null, "content": null}});
     
                 this.setState({ showSend: 0, filename: "Seleziona..." });
             }else{
@@ -67,7 +67,7 @@ class ConnectedUpload extends React.Component {
                     <i className="material-icons">attach_file</i>
                     <span className="file-name">{this.state.filename}</span>
                 </label>
-                <button type="submit" className={(this.state.showSend) ? "show_send send-file" : "send-file"}><i className="material-icons">file_upload</i><span className="progress_count">{this.state.progress}</span></button>
+                <button type="submit" className={(this.state.showSend) ? "show_send send-file" : "send-file"}><i className="material-icons">file_upload</i></button>
             </form>
         );
     }

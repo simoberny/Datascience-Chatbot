@@ -56,8 +56,8 @@ def speak_json(message):
     if 'messages' not in session:
         session['messages'] = []
 
-    session['messages'].append(["me", message])
-    session['messages'].append(["comp", response.query_result.fulfillment_text])
+    session['messages'].append(["me", message, "markdown", "null", "null"])
+    session['messages'].append(["comp", response.query_result.fulfillment_text, "markdown", "null", "null"])
 
     return (response.query_result)
 
@@ -90,15 +90,6 @@ def getmessages():
 def clearsession():
     if 'messages' in session:
         session['messages'] = []
-
-    return jsonify(result="ok")
-
-@app.route('/api/savejup', methods=['GET'])
-def savejup():
-    message = request.args.get('value')
-
-    with open("test.txt","wb") as fo:
-        fo.write("This is Test Data")
 
     return jsonify(result="ok")
 
