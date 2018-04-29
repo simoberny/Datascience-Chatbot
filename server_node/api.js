@@ -1,8 +1,15 @@
 var exports = module.exports = {};
 var PythonShell = require('python-shell');
 const dialogflow = require('dialogflow');
-const sessionPath = require('./config/config_dialog');
+
+const conf_dialog = require('./config/config_dialog');
 const config = require('./config/config');
+
+const sessionClient = new dialogflow.SessionsClient({
+    keyFilename: conf_dialog.keyFilename
+});
+
+const sessionPath = sessionClient.sessionPath(conf_dialog.projectId, conf_dialog.sessionId);
 
 var express = require('express');
 var router = express.Router();
@@ -20,7 +27,7 @@ router.get('/message', (req, res) => {
         queryInput: {
           text: {
             text: data,
-            languageCode: languageCode,
+            languageCode: conf_dialog.languageCode,
           },
         },
       };
