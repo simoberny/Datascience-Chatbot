@@ -4,8 +4,10 @@
 
 Conversational application for Data Science with context support.
 
-* Python server with Flask framework
+* ~~Python server with Flask framework~~
+* NodeJS server with python-shell to execute Python and R commands
 * React Front-end with Redux store 
+* Jupyter Notebook save extension
 
 ## UI Concept
 
