@@ -42,7 +42,7 @@ class ConnectedForm extends React.Component {
 
             axios.get(url, {withCredentials: true})
             .then(response => {
-                this.props.addMessaggio({id: uuidv1(), who: "comp", what: "markdown", messaggio: response.data.response, output: {type: response.data.output.type, content: response.data.output.content}});
+                this.props.addMessaggio({id: uuidv1(), who: "comp", what: "markdown", messaggio: response.data.response, output: {type: response.data.output.type, content: response.data.output.content}, code: response.data.code});
             })
         }
     }

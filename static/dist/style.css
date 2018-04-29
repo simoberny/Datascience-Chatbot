@@ -34,7 +34,7 @@ html, body{
 }
 
 .gestione{
-    background: #ddd;
+    background: #f7f7f7;
     padding: 20px 10px;
     display: flex;
     flex-direction: column;
@@ -172,9 +172,6 @@ html, body{
     border-radius: 20px 20px 0px 20px;
 }*/
 
-
-
-
 .control{
     position: absolute;
     bottom: 0;
@@ -184,7 +181,7 @@ html, body{
     padding: 10px 25px;
     align-items: center;
     flex-wrap: nowrap;
-    background: white;
+    background: #222;
     box-shadow: 0px -4px 15px -4px rgba(0,0,0,0.08);
 }
 
@@ -205,7 +202,7 @@ html, body{
     padding: 0 15px;
     margin-right: 10px;
     border: 0;
-    background: #eee;
+    background: #333;
 }
 
 #dialog:focus {
@@ -220,7 +217,7 @@ html, body{
     max-width: 200px;
     flex-wrap: nowrap;
     height: 50px;
-    background: #555;
+    background: #333;
     border-radius: 50px;
     color: white;
     cursor: pointer;
@@ -292,14 +289,18 @@ html, body{
     height: 50px;
     z-index: 100;
     border: none;
-    background: #eee;
-    color: #555;
+    background: #333;
+    color: #999;
     font-weight: 500;
     border-radius: 10px;
     transition: background 0.3s;
     cursor: pointer;
     margin-right: 10px;
     padding: 0 10px;
+}
+
+.button-board i{
+    line-height: 50px;
 }
 
 .button-board:hover{
@@ -326,7 +327,7 @@ h5{
     width: 100%;
     height: auto;
     overflow: auto;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 20px;
 }
 
@@ -353,7 +354,7 @@ h5{
 }
 
 .panel{
-
+    padding: 10px;
 }
 
 .button-board-lateral{
@@ -365,7 +366,7 @@ h5{
     font-weight: 500;
     height: 60px;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
     transition: background 0.3s;
     cursor: pointer;
 }

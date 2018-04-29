@@ -54,8 +54,9 @@ router.get('/message', (req, res) => {
             console.log(req.session.commands);
      
             pyshell.on('message', function (message) {
-                res.write(JSON.stringify({response: message, output: {type: "text/plain", content: message}}));  
-                req.session.messages.push({who: 'comp', what: 'markdown', message: result.fulfillmentText, output: { type: "text/plain", content: message}});
+                var sanit = "" + parseInt(message);
+                res.write(JSON.stringify({response: result.fulfillmentText, output: {type: "text/plain", content: sanit}, code: comando}));  
+                req.session.messages.push({who: 'comp', what: 'markdown', message: result.fulfillmentText, output: { type: "text/plain", content: sanit}, code: comando});
             });
             pyshell.end(function (err,code,signal) {
               if (err) throw err;

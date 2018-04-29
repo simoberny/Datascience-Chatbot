@@ -79,12 +79,11 @@ class ConnectedSidemenu extends React.Component {
             var source = [];
             source.push(el.messaggio);
 
-            if(el.what == "code"){
+            if(el.output.content != null){
                 var type = (el.output.type == "image/png") ? {"image/png": el.output.content} : {"text/plain": [el.output.content]}
-                var outputs = (el.output.content != null) ? {"data": { 
-                    type
-                },"metadata": {}, "output_type": "display_data"} : "";
-                cells.push({"cell_type": el.what, "execution_count": 1, "metadata": {}, "outputs": [outputs], source});
+                var result_type = (el.output.type == "image/png") ? "display_data" : "execute_result";
+                var outputs = (el.output.content != null) ? {"data": type, "metadata": {}, "execution_count": 1, "output_type": result_type} : "";
+                cells.push({"cell_type": "code", "execution_count": 1, "metadata": {}, "outputs": [outputs], source: [el.code]});
             }else{
                 cells.push({"cell_type": el.what, "metadata": {}, source});
             }
