@@ -1,0 +1,1 @@
+exports.ALLOWED_EXTENSION = ["csv", "xls", "data"];

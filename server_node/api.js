@@ -1,25 +1,14 @@
 var exports = module.exports = {};
 var PythonShell = require('python-shell');
-
-const projectId = 'rnode-unitn';
-const sessionId = 'quickstart-session-id';
-const keyFilename = __dirname + '/RNode-Unitn-9444d4019101.json';
-const languageCode = 'it-IT';
-
 const dialogflow = require('dialogflow');
-const sessionClient = new dialogflow.SessionsClient({
-    keyFilename: keyFilename
-});
+const sessionPath = require('./config/config_dialog');
+const config = require('./config/config');
 
-const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 var express = require('express');
 var router = express.Router();
 
-
-const ALLOWED_EXTENSION = ["csv", "xls", "data"];
-
 function allowed_file(mime){
-    return ALLOWED_EXTENSION.includes(mime.split('.')[1]);
+    return config.ALLOWED_EXTENSION.includes(mime.split('.')[1]);
 }
 
 router.get('/message', (req, res) => {
