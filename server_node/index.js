@@ -20,6 +20,7 @@ app.use(fileUpload());
 app.use(function (req, res, next) {
     if(!req.session.messages) req.session.messages = []
     if(!req.session.datasets) req.session.datasets = []
+    if(!req.session.commands) req.session.commands = []
     next();
 });
   
