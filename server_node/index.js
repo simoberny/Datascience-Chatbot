@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 8080));
-app.use('/static', express.static('../static'));
+app.use('/dist', express.static('../static/dist/'));
 
 app.use(session({ secret: 'r_node_unitn', resave: true, saveUninitialized: true}));
 
