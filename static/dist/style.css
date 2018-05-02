@@ -139,9 +139,10 @@ html, body{
 }
 
 
-.markdown span{
+.markdown div{
     padding: 8px 15px;
     position: relative;
+    max-width: 60%;
 }
 
 .me{

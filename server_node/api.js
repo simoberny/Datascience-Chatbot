@@ -41,7 +41,7 @@ router.get('/message', (req, res) => {
 
         req.session.messages.push({who: 'me', what: 'markdown', message: data, output: { type: null, content: null}});
 
-        if(result.action == "somma" && (result.parameters.fields.number.numberValue && result.parameters.fields.number1.numberValue)){
+        /*if(result.action == "somma" && (result.parameters.fields.number.numberValue && result.parameters.fields.number1.numberValue)){
             var add1 = result.parameters.fields.number.numberValue;
             var add2 = result.parameters.fields.number1.numberValue;
 
@@ -62,11 +62,13 @@ router.get('/message', (req, res) => {
               if (err) throw err;
               res.end();
             });
-        }else{
+        }else{*/
+
             res.write(JSON.stringify({response: result.fulfillmentText, output: {type: null, content: null}}));  
             req.session.messages.push({who: 'comp', what: 'markdown', message: result.fulfillmentText, output: { type: null, content: null}});
             res.end();
-        }
+        
+        //}
     })
     .catch(err => {
         console.error('ERRORE:', err);
@@ -89,9 +91,14 @@ router.post('/upload', (req, res) => {
     var name = "";
     if(req.files.file && req.files.file.name && allowed_file(req.files.file.name)){
         var stream = req.files.file.data;
-        name = req.files.file.name.split('.')[0];
+        name = req.files.file.name;
+        var file = req.files.file;
 
-        var pyshell = new PythonShell('readfile.py');
+        file.mv("", function(){
+
+        });
+
+        /*var pyshell = new PythonShell('readfile.py');
         pyshell.send(stream.toString('utf8'));
  
         pyshell.on('message', function (message) {
@@ -101,7 +108,10 @@ router.post('/upload', (req, res) => {
         pyshell.end(function (err,code,signal) {
           if (err) throw err;
           res.end();
-        });
+        });*/
+
+        
+
     }else{
         res.write(JSON.stringify(name));   
         res.end();

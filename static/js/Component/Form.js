@@ -5,6 +5,8 @@ import { addMessaggio } from "../Actions/index";
 import uuidv1 from "uuid";
 import Upload from "./Upload";
 
+var chatId = uuidv1();
+
 const mapAddMessaggioEvent = dispatch => {
     return {
       addMessaggio: messaggio => dispatch(addMessaggio(messaggio))
@@ -23,12 +25,14 @@ class ConnectedForm extends React.Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8080/api/messages', {withCredentials: true})
+
+
+        /*axios.get('https://data-analysis-client.herokuapp.com/messages', {withCredentials: true})
         .then(response => {
             response.data.map(messaggio => {
                 this.props.addMessaggio({id: uuidv1(), who: messaggio.who, what: messaggio.what, messaggio: messaggio.message, output: {type: messaggio.output.type, content: messaggio.output.content}, code: messaggio.code});
             })
-        })
+        })*/
     }
 
     handleKeyPress(event) {
@@ -39,10 +43,14 @@ class ConnectedForm extends React.Component {
             this.props.addMessaggio({id: uuidv1(), who: "me", what: "markdown", messaggio: value, output: {type: null, content: null}});
             this.setState({ inputValue: ''});
 
-            var url = 'http://localhost:8080/api/message?message=' + encodeURIComponent(value);
-
-            axios.get(url, {withCredentials: true})
+            axios.post("https://data-analysis-client.herokuapp.com/clientWebHook/", {
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },body: { "chatId": chatId, "text": value}
+            })
             .then(response => {
+                console.log(response);
                 this.props.addMessaggio({id: uuidv1(), who: "comp", what: "markdown", messaggio: response.data.response, output: {type: response.data.output.type, content: response.data.output.content}, code: response.data.code});
             })
         }

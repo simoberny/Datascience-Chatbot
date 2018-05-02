@@ -38,7 +38,7 @@ class ConnectedUpload extends React.Component {
         var formdata = new FormData();
         formdata.append('file', file);
 
-        axios.post('http://localhost:8080/api/upload', formdata, {
+        axios.post('https://data-analysis-client.herokuapp.com/upload', formdata, {
             onUploadProgress: (progressEvent) => {
                 const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
                 if (totalLength !== null) {

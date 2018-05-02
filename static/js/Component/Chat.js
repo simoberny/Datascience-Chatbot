@@ -37,9 +37,9 @@ class ConnectedMessages extends React.Component {
                     <div className="line">
                         <span style={{display: (el.what == "code") ? "inline-block" : "none"}} className="incode">In [ {n} ]: </span>
                         <span style={{display: (el.what == "markdown") ? "inline-block" : "none"}} className="incode-markdown">{n}</span>
-                        <span className={el.what}>
-                            <span className={(el.what == "markdown") ? el.who : ' '}>{el.messaggio}</span>
-                        </span>
+                        <div className={el.what}>
+                            <div className={el.who}>{el.messaggio}</div>
+                        </div>
                     </div>
                     <div className="output-area" style={{display: (el.output.content != null) ? "block" : "none"}} >
                         <span style={{display: (el.output.content != null) ? "inline-block" : "none"}} className="outcode">Out [ {n} ]: </span>
