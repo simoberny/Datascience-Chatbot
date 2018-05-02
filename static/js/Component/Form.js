@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from "react-redux";
 import { addMessaggio } from "../Actions/index";
 import uuidv1 from "uuid";
-import Upload from "./Upload"
+import Upload from "./Upload";
 
 const mapAddMessaggioEvent = dispatch => {
     return {
@@ -26,7 +26,7 @@ class ConnectedForm extends React.Component {
         axios.get('http://localhost:8080/api/messages', {withCredentials: true})
         .then(response => {
             response.data.map(messaggio => {
-                this.props.addMessaggio({id: uuidv1(), who: messaggio.who, what: messaggio.what, messaggio: messaggio.message, output: {type: messaggio.output.type, content: messaggio.output.content}});
+                this.props.addMessaggio({id: uuidv1(), who: messaggio.who, what: messaggio.what, messaggio: messaggio.message, output: {type: messaggio.output.type, content: messaggio.output.content}, code: messaggio.code});
             })
         })
     }
@@ -34,6 +34,7 @@ class ConnectedForm extends React.Component {
     handleKeyPress(event) {
         if(event.key === 'Enter'){
             var value = event.target.value;
+            
 
             this.props.addMessaggio({id: uuidv1(), who: "me", what: "markdown", messaggio: value, output: {type: null, content: null}});
             this.setState({ inputValue: ''});

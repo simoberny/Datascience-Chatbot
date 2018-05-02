@@ -48,7 +48,11 @@ class ConnectedJupyter extends React.Component{
 
                 cells.push({"cell_type": "code", "execution_count": 1, "metadata": {}, "outputs": [outputs], "source": [el.code]});
             }else{
-                cells.push({"cell_type": "markdown", "metadata": {}, "source": [el.messaggio]});
+                if(el.who == "me"){
+                    cells.push({"cell_type": "markdown", "metadata": {}, "source": ["### &#x1F539; " + el.messaggio]});
+                }else{
+                    cells.push({"cell_type": "markdown", "metadata": {}, "source": ["&#x1F538; " + el.messaggio + "\n *** "]});
+                }
             }
         });
 

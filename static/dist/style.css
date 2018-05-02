@@ -117,7 +117,7 @@ html, body{
     padding-left: 10px;
     font-size: 19px;
     margin-left: -100px;
-    color: #0346aa;
+    color: #2196F3;
 }
 
 .incode-markdown{
@@ -125,7 +125,7 @@ html, body{
     font-family: 'Source Code Pro', monospace !important;
     padding-right: 80px;
     font-size: 15px;
-    margin-left: -80px;
+    margin-left: -55px;
     color: #666;
 }
 
@@ -135,7 +135,7 @@ html, body{
     padding-left: 10px;
     font-size: 19px;
     margin-left: -110px;
-    color: #a30202;
+    color: #F44336;
 }
 
 
@@ -324,7 +324,7 @@ h5{
 }
 
 .variable-list{
-    background: rgba(0,0,0,0.04);
+    background: rgba(0,0,0,0);
     width: 100%;
     height: auto;
     overflow: auto;
@@ -337,7 +337,7 @@ h5{
     padding: 7px 13px;
     background: rgba(0,0,0,0.1);
     box-shadow: 0 4px 15px -3px rgba(0,0,0,0.1);
-    border-radius: 20px;
+    border-radius: 5px;
     display: inline-block;
     margin-right: 20px;
     width: auto;
@@ -355,21 +355,29 @@ h5{
 }
 
 .panel{
-    padding: 10px;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 70px;
+    bottom: 0;
+    background: #222;
+    left: 0;
 }
 
 .button-board-lateral{
-    width: 100%;
+    width: 45%;
     z-index: 100;
     border: none;
-    background: rgba(0,0,0,0.05);
-    color: #555;
+    background: #333;
+    color: #bbb;
     font-weight: 500;
-    height: 60px;
+    height: 50px;
     border-radius: 10px;
-    margin-top: 15px;
     transition: background 0.3s;
     cursor: pointer;
+    box-shadow: 0px 1px 10px -1px rgba(0,0,0,0.26);
 }
 
 .button-board-lateral:hover{

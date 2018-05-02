@@ -14,7 +14,7 @@ class ConnectedUpload extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            filename: 'Seleziona...',
+            filename: 'Upload...',
             showSend: 0
         }
 
@@ -25,7 +25,7 @@ class ConnectedUpload extends React.Component {
     handlefileupload(e){
         if(e.target.value){
             this.setState({ 
-                filename: (e.target.value.split( '\\' ).pop()) ? e.target.value.split( '\\' ).pop() : "Seleziona...",
+                filename: (e.target.value.split( '\\' ).pop()) ? e.target.value.split( '\\' ).pop() : "Upload...",
                 showSend: 1,
                 progress: 0,
             });
@@ -53,16 +53,14 @@ class ConnectedUpload extends React.Component {
                 this.props.addMessaggio({"id": uuidv1(), "who": "comp", "what": "markdown", "messaggio": "Dataset caricato " + response.data, "output": {"type": null, "content": null}});
     
                 this.setState({ showSend: 0, filename: "Seleziona..." });
-            }else{
-                this.setState({ showSend: 0, filename: "File non caricato!" });
-            }
+            }else{  this.setState({ showSend: 0, filename: "File non caricato!" }); }
         })
     }
 
     render(){
         return (
             <form action="/" method="POST" encType="multipart/form-data" className="form-upload" onSubmit={this.handleSubmit}>
-                <input type="file" name="file" id="file" className="hidden_input" onChange={this.handlefileupload} ref={input => { this.fileInput = input; }} />
+                <input type="file" name="file" id="file" accept=".xls,.xlsx,.csv,.data" className="hidden_input" onChange={this.handlefileupload} ref={input => { this.fileInput = input; }} />
                 <label className="upload-file" htmlFor="file">
                     <i className="material-icons">attach_file</i>
                     <span className="file-name">{this.state.filename}</span>
