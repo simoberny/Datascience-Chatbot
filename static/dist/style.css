@@ -207,7 +207,8 @@ html, body{
 
 #dialog:focus {
     outline: none !important;
-    background: #ddd;
+    background: #444;
+    color: #eee;
 }
 
 .upload-file{

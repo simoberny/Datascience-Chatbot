@@ -2,9 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import axios from 'axios';
 import List from './Variablelist';
+import Jupyter from './SaveJupyter';
 import { clearMessaggi } from "../Actions/index";
-
-var fileDownload = require('js-file-download');
 
 const JsonTable = require('ts-react-json-table');
 
@@ -12,10 +11,6 @@ const mapClearMessaggiEvent = dispatch => {
     return {
       clearMessaggi: () => dispatch(clearMessaggi())
     };
-};
-
-const mapMessaggi = state => {
-    return { messaggi: state.messaggi };
 };
 
 class ConnectedSidemenu extends React.Component {
@@ -29,7 +24,6 @@ class ConnectedSidemenu extends React.Component {
         }
         this.handleClick = this.handleClick.bind(this);
         this.clearSession = this.clearSession.bind(this);
-        this.saveJupyter = this.saveJupyter.bind(this);
     }
 
     handleClick (el) {
@@ -49,54 +43,6 @@ class ConnectedSidemenu extends React.Component {
         .then(response => {
             this.props.clearMessaggi();
         })
-    }
-
-    saveJupyter(e){
-        this.setState({ savedJup: 'Saved' });
-
-        var metadata = {"kernelspec": {
-                                "display_name": "Python 3",
-                                "language": "python",
-                                "name": "python3"
-                            },
-                        "language_info": {
-                            "codemirror_mode": {
-                                "name": "ipython",
-                                "version": 3
-                            },
-                            "file_extension": ".py",
-                            "mimetype": "text/x-python",
-                            "name": "python",
-                            "nbconvert_exporter": "python",
-                            "pygments_lexer": "ipython3",
-                            "version": "3.6.4"
-                        }
-                    };
-
-        var cells = [];
-
-        this.props.messaggi.map(el =>{
-            var source = [];
-            source.push(el.messaggio);
-
-            if(el.output.content != null){
-                var type = (el.output.type == "image/png") ? {"image/png": el.output.content} : {"text/plain": [el.output.content]}
-                var result_type = (el.output.type == "image/png") ? "display_data" : "execute_result";
-                var outputs = (el.output.content != null) ? {"data": type, "metadata": {}, "execution_count": 1, "output_type": result_type} : "";
-                cells.push({"cell_type": "code", "execution_count": 1, "metadata": {}, "outputs": [outputs], source: [el.code]});
-            }else{
-                cells.push({"cell_type": el.what, "metadata": {}, source});
-            }
-        });
-
-        var json = {
-            "cells": cells,
-            "metadata": metadata,
-            "nbformat": 4,
-            "nbformat_minor": 2
-        }
-
-        fileDownload(JSON.stringify(json), 'acaso.ipynb');
     }
 
     render () {
@@ -125,7 +71,7 @@ class ConnectedSidemenu extends React.Component {
                 </div>
                 {dettaglioVariabile}
                 <div className="panel">
-                    <button className="button-board-lateral" onClick={this.saveJupyter}>{this.state.savedJup}</button>
+                    <Jupyter />
                     <button className="button-board-lateral" onClick={this.clearSession}>Clear</button>
                 </div>
             </div>
@@ -133,5 +79,5 @@ class ConnectedSidemenu extends React.Component {
     }
 }
 
-const Sidemenu = connect(mapMessaggi, mapClearMessaggiEvent)(ConnectedSidemenu);
+const Sidemenu = connect(null, mapClearMessaggiEvent)(ConnectedSidemenu);
 export default Sidemenu;
