@@ -41,11 +41,28 @@ class ConnectedMessages extends React.Component {
                             <div className={el.who}>{el.messaggio}</div>
                         </div>
                     </div>
-                    <div className="output-area" style={{display: (el.output.content != null) ? "block" : "none"}} >
-                        <span style={{display: (el.output.content != null) ? "inline-block" : "none"}} className="outcode">Out [ {n} ]: </span>
-                        <img style={{display: (el.output.content != null && el.output.type == "image") ? "block" : "none"}} src={"data:image/gif;base64," + el.output.content}/>
-                        <p>{el.output.content}</p>
-                    </div>
+                    { 
+                        (typeof el.output != "undefined" && el.output.length > 0 && el.output != null) ? (
+                            <div className="output-area">
+                                <span className="outcode">Out [ {n} ]: </span>
+                                {
+                                    el.output.map((al, i) => {
+                                        return(
+                                            <div className="resultdiv" key={i}>
+                                                {
+                                                    (al.type == "image/png") ? 
+                                                    <img src={"data:image/gif;base64," + al.content}/>
+                                                    :
+                                                    ""
+                                                }
+                                                <p>{al.content}</p>
+                                            </div>
+                                        );
+                                    })
+                                }
+                            </div>) 
+                        : " "
+                    }
                 </li>
             );
         });

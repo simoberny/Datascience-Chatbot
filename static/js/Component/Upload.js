@@ -37,6 +37,7 @@ class ConnectedUpload extends React.Component {
         var file = this.fileInput.files[0];
         var formdata = new FormData();
         formdata.append('file', file);
+        formdata.append('id', this.props.chatID);
 
         axios.post('https://data-analysis-client.herokuapp.com/upload', formdata, {
             onUploadProgress: (progressEvent) => {
@@ -50,7 +51,7 @@ class ConnectedUpload extends React.Component {
 
             if(name){
                 this.props.addVariabile({ "name": name, "id": uuidv1() });
-                this.props.addMessaggio({"id": uuidv1(), "who": "comp", "what": "markdown", "messaggio": "Dataset caricato " + response.data, "output": {"type": null, "content": null}});
+                this.props.addMessaggio({"id": uuidv1(), "who": "bot", "what": "markdown", "messaggio": response.data.messaggio, "output": []});
     
                 this.setState({ showSend: 0, filename: "Seleziona..." });
             }else{  this.setState({ showSend: 0, filename: "File non caricato!" }); }

@@ -25,9 +25,7 @@ class ConnectedForm extends React.Component {
     }
 
     componentDidMount(){
-
-
-        /*axios.get('https://data-analysis-client.herokuapp.com/messages', {withCredentials: true})
+        /*axios.get('https://data-analysis-bot.herokuapp.com/messages')
         .then(response => {
             response.data.map(messaggio => {
                 this.props.addMessaggio({id: uuidv1(), who: messaggio.who, what: messaggio.what, messaggio: messaggio.message, output: {type: messaggio.output.type, content: messaggio.output.content}, code: messaggio.code});
@@ -39,19 +37,21 @@ class ConnectedForm extends React.Component {
         if(event.key === 'Enter'){
             var value = event.target.value;
             
-
-            this.props.addMessaggio({id: uuidv1(), who: "me", what: "markdown", messaggio: value, output: {type: null, content: null}});
+            this.props.addMessaggio({id: uuidv1(), who: "me", what: "markdown", messaggio: value, output: []});
             this.setState({ inputValue: ''});
 
-            axios.post("https://data-analysis-client.herokuapp.com/clientWebHook/", {
-                headers: {
-                    'accept': 'application/json',
-                    'content-type': 'application/json'
-                },body: { "chatId": chatId, "text": value}
+            axios.post("https://data-analysis-bot.herokuapp.com/clientWebHook/", {
+                "message": {
+                    "chat": {"id": chatId}, 
+                    "text": value
+                },
+                "react": "true"
+            }, {
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
             })
             .then(response => {
-                console.log(response);
-                this.props.addMessaggio({id: uuidv1(), who: "comp", what: "markdown", messaggio: response.data.response, output: {type: response.data.output.type, content: response.data.output.content}, code: response.data.code});
+                this.props.addMessaggio({id: uuidv1(), who: "bot", what: "markdown", messaggio: response.data.message, output: response.data.outputs, code: response.data.code});
             })
         }
     }
@@ -66,7 +66,7 @@ class ConnectedForm extends React.Component {
                 <button className="button-board round"><i className="material-icons">undo</i></button>
                 <button className="button-board round"><i className="material-icons">redo</i></button>
                 <input type="text" name="input" id="dialog" autoComplete="off" placeholder="Ask me something!" value={this.state.inputValue} onKeyPress={this.handleKeyPress} onChange={this.handleChange}/>
-                <Upload addMessaggio={this.props.addMessaggio}/>
+                <Upload addMessaggio={this.props.addMessaggio} chatID={chatId}/>
             </div>
         );
     }

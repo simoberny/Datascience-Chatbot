@@ -65,7 +65,7 @@ router.get('/message', (req, res) => {
         }else{*/
 
             res.write(JSON.stringify({response: result.fulfillmentText, output: {type: null, content: null}}));  
-            req.session.messages.push({who: 'comp', what: 'markdown', message: result.fulfillmentText, output: { type: null, content: null}});
+            req.session.messages.push({what: 'markdown', message: result.fulfillmentText, output: { type: null, content: null}});
             res.end();
         
         //}

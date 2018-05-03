@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import axios from 'axios';
 import List from './Variablelist';
-import Jupyter from './SaveJupyter';
+import SaveJupyter from './SaveJupyter';
+import LoadJupyter from './LoadJupyter';
 import { clearMessaggi } from "../Actions/index";
 
 const JsonTable = require('ts-react-json-table');
@@ -71,7 +72,8 @@ class ConnectedSidemenu extends React.Component {
                 </div>
                 {dettaglioVariabile}
                 <div className="panel">
-                    <Jupyter />
+                    <SaveJupyter />
+                    <LoadJupyter />
                     <button className="button-board-lateral" onClick={this.clearSession}>Clear</button>
                 </div>
             </div>

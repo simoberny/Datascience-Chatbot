@@ -30,7 +30,7 @@ class ConnectedJupyter extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            savedJup: 'Save Jupyter Notebook'
+            savedJup: ' Jupyter'
         }
 
         this.saveJupyter = this.saveJupyter.bind(this);
@@ -46,12 +46,12 @@ class ConnectedJupyter extends React.Component{
 
                 var outputs = (el.output.content != null) ? {"data": dati, "metadata": {}, "execution_count": 1, "output_type": result_type} : "";
 
-                cells.push({"cell_type": "code", "execution_count": 1, "metadata": {}, "outputs": [outputs], "source": [el.code]});
+                cells.push({"cell_type": "code", "execution_count": 1, "metadata": { "who": "bot" }, "outputs": [outputs], "source": [el.code]});
             }else{
                 if(el.who == "me"){
-                    cells.push({"cell_type": "markdown", "metadata": {}, "source": ["### &#x1F539; " + el.messaggio]});
+                    cells.push({"cell_type": "markdown", "metadata": { "who": "me" }, "source": ["### &#x1F539; " + el.messaggio]});
                 }else{
-                    cells.push({"cell_type": "markdown", "metadata": {}, "source": ["&#x1F538; " + el.messaggio + "\n *** "]});
+                    cells.push({"cell_type": "markdown", "metadata": { "who": "bot" }, "source": ["&#x1F538; " + el.messaggio + "\n *** "]});
                 }
             }
         });
@@ -69,12 +69,19 @@ class ConnectedJupyter extends React.Component{
     saveJupyter(e){
         this.setState({ savedJup: 'Saved' });
         var ipynb = this.generateJSON();
-        fileDownload(JSON.stringify(ipynb), 'jupyter.ipynb');
+        var today = new Date();
+
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;
+        var yyyy = today.getFullYear();
+        var date = dd + "-" + mm + "-" + yyyy;
+
+        fileDownload(JSON.stringify(ipynb), date + '.ipynb');
     }
 
     render(){
         return(
-            <button className="button-board-lateral" onClick={this.saveJupyter}>{this.state.savedJup}</button>
+            <button className="button-board-lateral" onClick={this.saveJupyter}><i className="material-icons">file_download</i>{this.state.savedJup}</button>
         );
     }
 }
