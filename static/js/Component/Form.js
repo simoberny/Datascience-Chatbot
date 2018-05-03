@@ -51,6 +51,7 @@ class ConnectedForm extends React.Component {
                 'Content-Type': 'application/json'
             })
             .then(response => {
+                console.log(response.data.outputs);
                 this.props.addMessaggio({id: uuidv1(), who: "bot", what: "markdown", messaggio: response.data.message, output: response.data.outputs, code: response.data.code});
             })
         }
