@@ -39,7 +39,7 @@ class ConnectedUpload extends React.Component {
         formdata.append('file', file);
         formdata.append('id', this.props.chatID);
 
-        axios.post('https://data-analysis-client.herokuapp.com/upload', formdata, {
+        axios.post('https://data-analysis-bot.herokuapp.com/upload', formdata, {
             onUploadProgress: (progressEvent) => {
                 const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
                 if (totalLength !== null) {
@@ -47,14 +47,10 @@ class ConnectedUpload extends React.Component {
                 }
             }
         }).then(response => {
-            const name = response.data;
-
-            if(name){
-                this.props.addVariabile({ "name": name, "id": uuidv1() });
-                this.props.addMessaggio({"id": uuidv1(), "who": "bot", "what": "markdown", "messaggio": response.data.messaggio, "output": []});
+                this.props.addVariabile({ "name": file.name, "id": uuidv1() });
+                this.props.addMessaggio({"id": uuidv1(), "who": "bot", "what": "markdown", "messaggio": response.data.message, "output": []});
     
                 this.setState({ showSend: 0, filename: "Seleziona..." });
-            }else{  this.setState({ showSend: 0, filename: "File non caricato!" }); }
         })
     }
 

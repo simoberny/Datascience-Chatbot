@@ -40,7 +40,7 @@ class ConnectedForm extends React.Component {
             this.props.addMessaggio({id: uuidv1(), who: "me", what: "markdown", messaggio: value, output: []});
             this.setState({ inputValue: ''});
 
-            axios.post("https://data-analysis-bot.herokuapp.com/clientWebHook/", {
+            /*axios.post("https://data-analysis-bot.herokuapp.com/clientWebHook/", {
                 "message": {
                     "chat": {"id": chatId}, 
                     "text": value
@@ -51,9 +51,11 @@ class ConnectedForm extends React.Component {
                 'Content-Type': 'application/json'
             })
             .then(response => {
-                console.log(response.data.outputs);
                 this.props.addMessaggio({id: uuidv1(), who: "bot", what: "markdown", messaggio: response.data.message, output: response.data.outputs, code: response.data.code});
-            })
+            })*/
+
+            this.props.addMessaggio({id: uuidv1(), who: "bot", what: "markdown", messaggio: "Messaggio di prova prova", output: [{type: "text/plain", content: "Ciaoc"}], code: null});
+
         }
     }
 

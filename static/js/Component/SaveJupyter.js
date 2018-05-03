@@ -30,7 +30,7 @@ class ConnectedJupyter extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            savedJup: ' Jupyter'
+            savedJup: ' Save'
         }
 
         this.saveJupyter = this.saveJupyter.bind(this);

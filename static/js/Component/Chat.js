@@ -4,6 +4,13 @@ import Form from "./Form";
 import uuidv1 from "uuid";
 import { connect } from "react-redux";
 import { addMessaggio } from "../Actions/index";
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import docco from 'react-syntax-highlighter/styles/hljs/github'; 
+
+const Code = (props) => {
+    const codeString = '' + props.code;
+    return <SyntaxHighlighter showLineNumbers='true' language='python' style={docco}>{codeString}</SyntaxHighlighter>;  
+}
 
 const mapMessaggi = state => {
     return { messaggi: state.messaggi };
@@ -33,16 +40,27 @@ class ConnectedMessages extends React.Component {
     render(){
         const list = this.props.messaggi.map((el, n) => {
             return(
-                <li key={el.id} onClick={(e) => this.handleListClick(e, el.id)} >
-                    <div className="line">
-                        <span style={{display: (el.what == "code") ? "inline-block" : "none"}} className="incode">In [ {n} ]: </span>
-                        <span style={{display: (el.what == "markdown") ? "inline-block" : "none"}} className="incode-markdown">{n}</span>
-                        <div className={el.what}>
-                            <div className={el.who}>{el.messaggio}</div>
-                        </div>
-                    </div>
+                <li key={el.id} onClick={(e) => this.handleListClick(e, el.id)} >              
+                    {
+                        (el.what == "code") ? 
+                            (
+                                <div className="line">
+                                    <span className="incode">In [ {n} ]: </span>
+                                    <Code code={el.messaggio} />
+                                </div>
+                            )
+                        :
+                        (
+                            <div className="line">
+                                <span className="incode-markdown">{n}</span>
+                                <div className="markdown">
+                                    <div className={el.who}>{el.messaggio}</div>
+                                </div>
+                            </div>
+                        )
+                    }
                     { 
-                        (typeof el.output != "undefined" && el.output.length > 0 && el.output != null) ? (
+                        (typeof el.output != "undefined" && el.output != null && el.output.length > 0) ? (
                             <div className="output-area">
                                 <span className="outcode">Out [ {n} ]: </span>
                                 {
