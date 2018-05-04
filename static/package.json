@@ -48,6 +48,7 @@
     "axios": "^0.18.0",
     "js-file-download": "^0.4.1",
     "react-syntax-highlighter": "^7.0.4",
+    "react-transition-group": "^1.2.1",
     "ts-react-json-table": "^0.1.1"
   }
 }

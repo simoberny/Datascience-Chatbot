@@ -5,7 +5,8 @@ import uuidv1 from "uuid";
 import { connect } from "react-redux";
 import { addMessaggio } from "../Actions/index";
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import docco from 'react-syntax-highlighter/styles/hljs/github'; 
+import docco from 'react-syntax-highlighter/styles/hljs/atom-one-light'; 
+import { CSSTransitionGroup } from 'react-transition-group';
 
 const Code = (props) => {
     const codeString = '' + props.code;
@@ -87,7 +88,12 @@ class ConnectedMessages extends React.Component {
 
         return(
             <ul className="chat-thread">
+                <CSSTransitionGroup
+                    transitionName="example"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}>
                 {list}
+                </CSSTransitionGroup>
                 <li style={{ float:"left", clear: "both" }} ref={(el) => { this.messagesEnd = el; }}></li>
             </ul>
         );

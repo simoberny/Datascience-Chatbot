@@ -42,12 +42,13 @@ class ConnectedLoadJupyter extends React.Component{
                     var outs = [];
                     if(typeof el.outputs != "undefined"){
                         el.outputs.map(op => {
-                            var field_type = Object.keys(op.data)[0];
-                            outs.push({type: field_type, content: op.data[field_type][0]});
+                            var field_types = Object.keys(op.data);
+                            var field = field_types.find((element) => {return element == "text" || element == "text/plain" || element == "image/png"});
+                            outs.push({type: field, content: op.data[field][0]});
                         });
-                    }
-                    
-                    f.addMessaggio({id: uuidv1(), who: el.metadata.who, what: el.cell_type, messaggio: el.source, output: outs});
+                    }                    
+
+                    f.addMessaggio({id: uuidv1(), who: el.metadata.who, what: el.cell_type, messaggio: el.source.join(""), output: outs});
                 });
             };
         })(this.props);

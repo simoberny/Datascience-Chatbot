@@ -41,7 +41,7 @@ class ConnectedJupyter extends React.Component{
 
         this.props.messaggi.map(el =>{
             if(el.output.content != null){
-                var dati = (el.output.type == "image/png") ? {"image/png": el.output.content} : {"text/plain": [el.output.content]}
+                var dati = (el.output.type == "image/png") ? {"image/png": el.output.content} : {"text": [el.output.content]}
                 var result_type = (el.output.type == "image/png") ? "display_data" : "execute_result";
 
                 var outputs = (el.output.content != null) ? {"data": dati, "metadata": {}, "execution_count": 1, "output_type": result_type} : "";
