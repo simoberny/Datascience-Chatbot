@@ -300,7 +300,6 @@ pre{
     transition: background 0.3s;
     cursor: pointer;
     margin-right: 10px;
-    box-sizing: content-box;
 }
 
 .button-board i{
@@ -313,11 +312,18 @@ pre{
 }
 
 .round{
+    flex: none;
+    flex-basis: 40px;
     border-radius: 50%;
     width: 40px;
     height: 40px;
+    padding: 0 !important;
 }
 
+
+.round i{
+    font-size: 23px;
+}
 
 /**************************** GESTIONE *****************************/
 
