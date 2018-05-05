@@ -141,17 +141,17 @@ html, body{
 }
 
 .markdown div{
-    padding: 8px 15px;
+    padding: 10px 20px;
     position: relative;
     max-width: 60%;
     float: left; 
-    margin: 0 12px;
+    margin: 0 15px;
 }
 
 .me{
-    background: #1a75ff;
+    background: #42A5F5;
     color: white;
-    border-radius: 20px 20px 20px 0;
+    border-radius: 10px 10px 10px 0;
     float: right !important;
 }
 
@@ -166,12 +166,12 @@ pre{
 
 .bot, .comp{
     color: #444;
-    background: #e7e7e7;
-    border-radius: 20px 20px 0px 20px;
+    background: #eee;
+    border-radius: 10px 10px 0px 10px;
 }
 
 .resultdiv p{
-    margin: 0 12px;
+    margin: 0 15px;
 }
 
 .control{
