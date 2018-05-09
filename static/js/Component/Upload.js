@@ -37,7 +37,6 @@ class ConnectedUpload extends React.Component {
         var file = this.fileInput.files[0];
         var formdata = new FormData();
         formdata.append('file', file);
-        formdata.append('id', this.props.chatID);
 
         axios.post('https://data-analysis-bot.herokuapp.com/upload', formdata, {
             onUploadProgress: (progressEvent) => {

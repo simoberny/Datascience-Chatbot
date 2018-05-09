@@ -28,7 +28,7 @@ class ConnectedSidemenu extends React.Component {
     }
 
     handleClick (el) {
-        axios.get('https://data-analysis-bot.herokuapp.com/variable/' + el.name, {withCredentials: true, responseType: 'json'})
+        axios.get('https://data-analysis-bot.herokuapp.com/variable/' + el.name, {responseType: 'json'})
         .then(response => {
             console.log(response.data);
             this.setState({
@@ -40,7 +40,7 @@ class ConnectedSidemenu extends React.Component {
     }
 
     clearSession(e) {
-        axios.get('https://data-analysis-bot.herokuapp.com/clear', {withCredentials: true})
+        axios.get('https://data-analysis-bot.herokuapp.com/clear')
         .then(response => {
             this.props.clearMessaggi();
         })

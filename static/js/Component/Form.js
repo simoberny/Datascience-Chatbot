@@ -5,8 +5,6 @@ import { addVariabile, addMessaggio } from "../Actions/index";
 import uuidv1 from "uuid";
 import Upload from "./Upload";
 
-var chatId = uuidv1();
-
 const mapAddMessaggioEvent = dispatch => {
     return {
       addMessaggio: messaggio => dispatch(addMessaggio(messaggio)),
@@ -72,7 +70,7 @@ class ConnectedForm extends React.Component {
                 <button className="button-board round"><i className="material-icons">undo</i></button>
                 <button className="button-board round"><i className="material-icons">redo</i></button>
                 <input type="text" name="input" id="dialog" autoComplete="off" placeholder="Ask me something!" value={this.state.inputValue} onKeyPress={this.handleKeyPress} onChange={this.handleChange}/>
-                <Upload addMessaggio={this.props.addMessaggio} chatID={chatId}/>
+                <Upload addMessaggio={this.props.addMessaggio}/>
             </div>
         );
     }
