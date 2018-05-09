@@ -64,7 +64,6 @@ class ConnectedMessages extends React.Component {
                         (typeof el.output != "undefined" && el.output != null && el.output.length > 0) ? (
                             <div className="output-area">
                                 <span className="outcode">Out [ {n} ]: </span>
-                                <pre>{el.output.join("")}</pre>
                                 {
                                     el.output.map((al, i) => {
                                         return(
