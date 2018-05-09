@@ -15,13 +15,6 @@ Conversational application for Data Science with context support.
 
 ## Instructions
 
-To start the app, start the server with
-
-```
-python main.py
-```
-Requirements on the server folder [HERE](https://github.com/simoberny/Datascience-Chatbot/tree/master/server)
-
 For live application just init your node folder and dependencies with 
 
 ```
