@@ -39,8 +39,11 @@ class Jupyter{
 
             var messages = [];
             el.source.map(message => {
-                var temp = message.split(";")[1];
-                messages.push(temp);
+                if(el.cell_type == "markdown"){
+                    var message = message.split(";")[1];
+                }
+                
+                messages.push(message);
             });
 
             messaggi.push({who: el.metadata.who, what: el.cell_type, messaggio: messages.join(""), output: outs});
