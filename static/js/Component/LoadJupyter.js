@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { addMessaggio } from "../Actions/index";
 import uuidv1 from "uuid";
+import Jup from "../Jupyter/Jupyter";
 
 const mapAddMessaggioEvent = dispatch => {
     return {
@@ -18,11 +19,7 @@ class ConnectedLoadJupyter extends React.Component{
 
         this.handleChange = this.handleChange.bind(this);
     }
-
-    readJSON(){
-
-    }
-
+    
     handleChange(files) {
         var file = files[0];
         this.setState({
@@ -35,20 +32,10 @@ class ConnectedLoadJupyter extends React.Component{
         reader.onload = (function(f) {
             return function(evt) {
                 var json = JSON.parse(evt.target.result);
-                var cells = [];
-                cells = json.cells;
+                var messaggi_jup = Jup.readJupyter(json.cells);
 
-                cells.map(el =>{
-                    var outs = [];
-                    if(typeof el.outputs != "undefined"){
-                        el.outputs.map(op => {
-                            var field_types = Object.keys(op.data);
-                            var field = field_types.find((element) => {return element == "text" || element == "text/plain" || element == "image/png"});
-                            outs.push({type: field, content: op.data[field][0]});
-                        });
-                    }                    
-
-                    f.addMessaggio({id: uuidv1(), who: el.metadata.who, what: el.cell_type, messaggio: el.source.join(""), output: outs});
+                messaggi_jup.map(mes => {
+                    f.addMessaggio({id: uuidv1(), who: mes.who, what: mes.what, messaggio: mes.messaggio, output: mes.output});
                 });
             };
         })(this.props);

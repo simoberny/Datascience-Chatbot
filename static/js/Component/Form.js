@@ -1,7 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import { connect } from "react-redux";
-import { addMessaggio } from "../Actions/index";
+import { addVariabile, addMessaggio } from "../Actions/index";
 import uuidv1 from "uuid";
 import Upload from "./Upload";
 
@@ -9,7 +9,8 @@ var chatId = uuidv1();
 
 const mapAddMessaggioEvent = dispatch => {
     return {
-      addMessaggio: messaggio => dispatch(addMessaggio(messaggio))
+      addMessaggio: messaggio => dispatch(addMessaggio(messaggio)),
+      aaddVariabile: variabile => dispatch(addVariabile(variabile))
     };
 };
 
@@ -25,12 +26,18 @@ class ConnectedForm extends React.Component {
     }
 
     componentDidMount(){
-        /*axios.get('https://data-analysis-bot.herokuapp.com/messages')
+        axios.get('https://data-analysis-bot.herokuapp.com/messages')
         .then(response => {
-            response.data.map(messaggio => {
-                this.props.addMessaggio({id: uuidv1(), who: messaggio.who, what: messaggio.what, messaggio: messaggio.message, output: {type: messaggio.output.type, content: messaggio.output.content}, code: messaggio.code});
+            console.log(response);
+
+            response.data.messages.map(messaggio => {
+                this.props.addMessaggio({id: uuidv1(), who: messaggio.who, what: "markdown", messaggio: messaggio.message, output: messaggio.outputs, code: messaggio.code});
             })
-        })*/
+
+            response.data.variables.map(variabile => {
+                this.props.addVariabile({ "name": variabile.name, "id": uuidv1() }); 
+            })
+        })
     }
 
     handleKeyPress(event) {
@@ -42,7 +49,6 @@ class ConnectedForm extends React.Component {
 
             axios.post("https://data-analysis-bot.herokuapp.com/clientWebHook/", {
                 "message": {
-                    "chat": {"id": chatId}, 
                     "text": value
                 },
                 "react": "true"
