@@ -18,7 +18,6 @@ Conversational application for Data Science with context support.
 For live application just init your node folder and dependencies with 
 
 ```
-npm init
 npm install
 ```
 and then 
