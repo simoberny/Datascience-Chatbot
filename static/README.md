@@ -10,7 +10,6 @@ Chat UI with React
 
 To install all the dependencies
 ```
-npm init
 npm install
 ```
 
